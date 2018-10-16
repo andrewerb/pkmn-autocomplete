@@ -1,34 +1,47 @@
 # -*- coding: utf-8 -*-
-# Trie class implementation for AutoComplete
-# 
+"""
+Trie
+~~~~~~
+Trie and trie-node class implementations for String-query 'auto'-completion/suggestion.
+Best if run in Python 3!
+"""
 __author__ = "Andrew Erb"
-# Best if run in Python 3!
 
-'''
-    This project is a Node based Trie class implementation for String Autocompletion/Autosuggestion
-    Nodes objects each hold a dictionary of child nodes. 
-    Each key,value pair is a character to node matching that label.
-    These nodes create a chain of strings. That string/word is stored in data in the last node of that word's traversal.
-    Heavily influenced by Nick Stanisha's C++ Trie implementation
+"""
+* TODO:
+    * RC: regex, num match, PRINT TRIE! (stack for depth for spaces, local nodes)
+    * Stricter type checking in methods (mostly strings)
+    * regular expression to ommit whitespace
+    * init or load word params, from list, string, !num(?),dict?
+    * tree based node with children key
 
-    Lowercase and not nested dictionary, but leverages pythonic dictionaries and data types
-    * TODO:
-        - Stricter type checking in methods (mostly strings)
-        - regular expression to ommit whitespace
-'''
+* TODO:
+    #### DB
+    #### API Post
+    #### Visualize full Trie + Print (follow dict model ?)
 
-''' *TODO '''
-#### DB
-#### API Post
-#### Visualize full Trie + Print (follow dict model ?)
+"""
 
 class Node:
-    """ 
-        Node class for Trie nodes.
-        @Methods: ...
+    """Trie Node class
+        # @Methods: ... 
     """
-    def __init__(self, label=None, data=None):
-        """ Each node has a label, optional data value, and dictionary of child nodes."""
+    """
+        *TODO:
+            - display object / structure
+            - user input handler, other class
+            - dict based node, class IS(?) dict with default keys and key children to dicts
+            - python dict based class? (or dict holder)
+            - has label/name? 
+                ...or just parent. { label : child-node-dict }
+    """
+    def __init__(self, 
+            label=None, data=None):
+        '''
+            *TODO: DICT BASED IMPLMENTATION FOR LABEL, DATA, CHILDREN
+            *TODO: dump trie + list + delete word + know if word overlap
+        '''
+        # Each node has a label, optional data value, and dictionary of child nodes.
         self.label = label
         self.data = data # full words
         self.children = dict()
@@ -36,9 +49,11 @@ class Node:
     def addChild(self, key, data=None): 
         """new key is a node-to-be added to existing node"""
         if not isinstance(key, Node) in self.children:
-            self.children[key] = Node(key, data) # new Node with key as label and whatever provided data
+            self.children[key] = Node(key, data) 
+            # new Node with key as label and whatever provided data
         else:
-            self.children[key].label = key # redundant label checking during setting
+            self.children[key].label = key 
+            # redundant label checking during setting
         
     def __getitem__(self, key):
         '''Special method. Yields a child-node of this node, at specified key.
@@ -52,12 +67,29 @@ class Node:
         pass
 
 class Trie: 
-    '''Trie Class'''
+    """Trie data-structure implementation, comprised of node-objects.
+
+    * Node objects each hold a dictionary of child nodes. 
+    * Each key,value pair is a character to a node matching that label.
+    * A given char's node contains a dictionary of corresponding child-nodes. More char-labelled key,value pairs.
+    * Node traversals create a chain of strings. That complete string/word is stored in data in the last node of that word's traversal.
+    """
+    
     def __init__(self):
+        """Setup Trie with root Node
+        """
         self.root = Node()
-        
+    
+    # print_list
+    # print_trie_structure
+    # append word AND list
 
     def __format_input(self, word=str("")):
+        """For String formatting: keeps all input case insensitive by treating all letters as lowercase in the Trie.
+
+        Args:
+            Param (str): word
+        """
         '''keep input case insensitive by handling all as lowercase'''
         if word is None:
             return None
@@ -122,7 +154,7 @@ class Trie:
     def __get_prefix_node(self, prefix):
         ''' Helper method for getting prefix matches '''
         top_node = self.root
-        print ("prefix in helper is  :" + prefix )
+        print ("prefix in helper is : " + prefix )
         for letter in prefix:  
             # gets node at end of prefix
             if letter in top_node.children:
@@ -166,10 +198,16 @@ class Trie:
             
 
 def main():
+    """
+        Main function block for Trie module
+        Initializes a Trie from list. Returns no value.
+        # *TODO:
+            - User input handler. loop through dict and only exit upon cmd for it. escape char?
+    """
     print("Trie module running.")
     
     pkmn_trie = Trie()
-    pkmn_list = ["pikachu","pikachus","pikano","pikano","squirtle","alakazam","charizard","kadabra","charmander"]
+    pkmn_list = ['bulbasaur', 'ivysaur', 'venusaur', 'charmander', 'charmeleon', 'charizard', 'squirtle', 'wartortle', 'blastoise']
     for item in pkmn_list:
         print(item)
 
@@ -182,7 +220,7 @@ def main():
     print( str(pkmn_trie.get_prefix_matches(test_query[1])) )
     print( str(pkmn_trie.get_prefix_matches(test_query[2])) )
     
-    
+
 
 if __name__ == '__main__':
     main()
