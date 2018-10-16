@@ -1,5 +1,9 @@
-This is a Python 2.7 script to pull a list of Pokémon names from pokeapi.co
+# Fetch Pokemon Names
 
-I needed a list of names to put into a Trie data structure for autofill/automplete functionality. So, I'm fetching Pokémon names.
+This is a simple(ish) Python script to pull a list of Pokémon names from [PokeAPI](https://pokeapi.co/).
 
-This info is available pretty much anywhere but weirdly tricky to get in raw form without parsing or sanitizing its source in some way.
+I needed a list of strings to populate a Trie data structure, for autocompletion. So, I'm fetching Pokémon names.
+
+Funnily, this info is available pretty much anywhere, but weirdly tricky to get in raw-list form without parsing or sanitizing its source in some way (by parsing/scraping HTML or similar).
+
+This script aims to fetch names without timing-out the host server, and to keep track of its place if it does timeout.
