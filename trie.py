@@ -113,12 +113,12 @@ class Trie:
     '''
 
     def add_word(self, word):
-        ""Add a new word to the Trie object
+        """Add a new word to the Trie object
 
         Args:
             word (str): word/string added to Trie
         
-        ""
+        """
         word = self.__format_input(word) #stored in lowercase for consistency
         current_node = self.root
         word_finished = True
