@@ -67,13 +67,13 @@ class Node:
         pass
 
 class Trie:
-
     """Trie data-structure implementation, comprised of node-objects.
 
     * Node objects each hold a dictionary of child nodes. 
     * Each key,value pair is a character to a node matching that label.
     * A given char's node contains a dictionary of corresponding child-nodes. More char-labelled key,value pairs.
     * Node traversals create a chain of strings. That complete string/word is stored in data in the last node of that word's traversal.
+    
     """
     
     def __init__(self):
