@@ -8,39 +8,49 @@ Best if run in Python 3!
 __author__ = "Andrew Erb"
 
 """
-* TODO:
+* TODO: 10/18/18
+    docstrings
+    fix output bug
+    replace getters
+    more pythonic
+    actually do add print trie
+
+* TODO: ?
     * RC: regex, num match, PRINT TRIE! (stack for depth for spaces, local nodes)
     * Stricter type checking in methods (mostly strings)
     * regular expression to ommit whitespace
     * init or load word params, from list, string, !num(?),dict?
     * tree based node with children key
-
-* TODO:
+* TODO: ???
     #### DB
     #### API Post
     #### Visualize full Trie + Print (follow dict model ?)
-
+    ^??
 """
 
 class Node:
     """Trie Node class
-        # @Methods: ... 
-    """
-    """
-        *TODO:
+        # @Methods: list ? - describe inline
+    
+        *TODO: ???
             - display object / structure
             - user input handler, other class
             - dict based node, class IS(?) dict with default keys and key children to dicts
             - python dict based class? (or dict holder)
             - has label/name? 
                 ...or just parent. { label : child-node-dict }
+    
     """
+    
     def __init__(self, 
             label=None, data=None):
-        '''
-            *TODO: DICT BASED IMPLMENTATION FOR LABEL, DATA, CHILDREN
+        """Node Class Constructor
+        
+            *TODO: DICT BASED IMPLMENTATION FOR LABEL, DATA, CHILDREN******
+                #child.data vs child.some_dict[data]. 
+                # or node IS dict (inherit), init with indexes data, label, children. Var remaps to.
             *TODO: dump trie + list + delete word + know if word overlap
-        '''
+        """
         # Each node has a label, optional data value, and dictionary of child nodes.
         self.label = label
         self.data = data # full words
@@ -48,7 +58,7 @@ class Node:
 
     def addChild(self, key, data=None): 
         """new key is a node-to-be added to existing node"""
-        if not isinstance(key, Node) in self.children:
+        if not isinstance(key, Node) in self.children: ###IF NOT NODE[KEY]
             self.children[key] = Node(key, data) 
             # new Node with key as label and whatever provided data
         else:
@@ -56,9 +66,9 @@ class Node:
             # redundant label checking during setting
         
     def __getitem__(self, key):
-        '''Special method. Yields a child-node of this node, at specified key.
+        """Special method. Yields a child-node of this node, at specified key.
             Syntax: this_node[a_key]
-            Yields: this_node.children[key] (a Node value)'''
+            Yields: this_node.children[key] (a Node value)"""
         return self.children[key]
 
     
@@ -91,7 +101,7 @@ class Trie:
     def __format_input(self, word=str("")):
         """String formatting to lowercase.
         
-        All input is kept case-insensitive by treating all letters in the Trie as lowercase.
+        All letters in the Trie are kept lowercase. For relative case-insensitive searches.
 
         Args:
             word (str): String being formatted to lower-case.
