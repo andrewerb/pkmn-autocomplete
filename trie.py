@@ -66,7 +66,8 @@ class Node:
         """*TODO"""
         pass
 
-class Trie: 
+class Trie:
+
     """Trie data-structure implementation, comprised of node-objects.
 
     * Node objects each hold a dictionary of child nodes. 
@@ -76,36 +77,48 @@ class Trie:
     """
     
     def __init__(self):
-        """Setup Trie with root Node
+        """Trie class constructor. Sets up Trie with root Node
+        
+        TODO: Consider optional args for intializing/setup. String or list of strings.
         """
         self.root = Node()
     
+    ## TODO ?
     # print_list
     # print_trie_structure
-    # append word AND list
+    # append word AND list ??
 
     def __format_input(self, word=str("")):
-        """For String formatting: keeps all input case insensitive by treating all letters as lowercase in the Trie.
+        """String formatting to lowercase.
+        
+        All input is kept case-insensitive by treating all letters in the Trie as lowercase.
 
         Args:
-            Param (str): word
+            word (str): String being formatted to lower-case.
+        
+        Returns:
+            Lowercase version of string-input, if input isn't None.
         """
-        '''keep input case insensitive by handling all as lowercase'''
         if word is None:
             return None
         else:
             return (str(word.lower()))
     
-    def __getitem__(self, key):  # FIX
+    def __getitem__(self, key):  # FIX ###
         return self.root.children[key]
 
-    '''
+    ''' ##TODO?
     def __del__(self, key):
         pass
     '''
 
     def add_word(self, word):
-        '''Add a new word to the Trie'''
+        ""Add a new word to the Trie object
+
+        Args:
+            word (str): word/string added to Trie
+        
+        ""
         word = self.__format_input(word) #stored in lowercase for consistency
         current_node = self.root
         word_finished = True
@@ -130,7 +143,9 @@ class Trie:
             This is to avoid having to implement a stack to keep track of words.'''
     
     def has_word(self, word): ##false if 1 letter
-        '''Check for truthiness of word present as an exact/full match in Trie'''
+        '''Checks for truthiness of word present as an exact/full match in Trie.
+        Currently returns false in 1 letter.
+        '''
         if word == '':
             return False
         if word is None:
