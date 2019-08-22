@@ -14,7 +14,7 @@ from trie import *
 class TriePrefixUI:
     #ui_Trie = None
     """
-        A barebones interface for searching Prefixes against the (already initialized) autosuggestion trie.
+        A barebones user interface for searching Prefixes against the (already initialized) autosuggestion trie.
 
         ###############
         CLI user input for trie/autocomplete
@@ -38,7 +38,7 @@ class TriePrefixUI:
         #pass
         #defalt trie = None. needs setting.
 
-    def set_trie(search_trie=None):
+    def set_trie(self, search_trie=None):
         self.session_trie = search_trie
 
     def ui_loop(self):
@@ -96,7 +96,7 @@ class TriePrefixUI:
 
 ###################
 def main():
-    print("CLI UI running")
+    #print("CLI UI running")
     print("Pokémon Search \'Auto\'-Suggestion")
     ui_session = TriePrefixUI()
     ui_session.ui_loop()
